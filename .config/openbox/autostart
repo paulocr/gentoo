@@ -1,0 +1,29 @@
+## GNOME PolicyKit and Keyring
+eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
+
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true" &
+
+(\
+nitrogen --restore && \
+cb-compositor --start && \
+sleep 2s && \
+xautolock -time 35 -locker slimlock & \
+lxpanel & \
+) & 
+
+#start nm-applet PCV
+nm-applet &
+
+## Volume keys daemon
+xfce4-volumed &
+
+## Enable power management
+xfce4-power-manager &
+
+xset b off &
+
+#Execute dropbox PCV
+dropbox &
+
+#keyboard layout
+setxkbmap -layout us,es -variant -option grp:alt_shift_toggle & 
